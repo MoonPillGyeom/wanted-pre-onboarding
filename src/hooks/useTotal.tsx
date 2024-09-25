@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// 제네릭 타입을 이용한 커스텀 훅
 export default function useTotalPrice<T extends { price: number }>() {
   const [totalPrice, setTotalPrice] = useState<number>(0);
 

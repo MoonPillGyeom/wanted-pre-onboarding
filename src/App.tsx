@@ -15,12 +15,14 @@ function App() {
   const [mockData, setMockData] = useState<MockData[]>([]);
   const [nextPage, setNextPage] = useState<number>(0);
   const [isEnd, setIsEnd] = useState<boolean>(false); // 전체 데이터 호출 상태 여부
+  const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
 
   const { totalPrice, updateTotalPrice } = useTotalPrice<MockData>(); // 합계 계산식 hook
 
   const targetRef = useRef<HTMLDivElement | null>(null); // intersectionObserver로 감시할 요소
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const data: any = await getMockData(nextPage);
       if (!data.isEnd) {
@@ -32,6 +34,8 @@ function App() {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,6 +67,8 @@ function App() {
         mockData.map((data: MockData, index: number) => (
           <Item key={index} data={data} />
         ))}
+      {/* 로딩 UI */}
+      {isLoading && <div>로딩 중...</div>}
 
       {/* 합계 : price  */}
       <div ref={targetRef}>합계 : {totalPrice}</div>
