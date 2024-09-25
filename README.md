@@ -4,6 +4,10 @@
 ``` npm run start ```
 
 
+https://github.com/user-attachments/assets/e7b4f949-f1a0-414e-a0a3-b324e856a30b
+
+
+
 # 프리온보딩 FE 챌린지 10월 (2024) | 리액트 오픈소스 펼쳐보기
 
 ## 챌린지 과제 내용
